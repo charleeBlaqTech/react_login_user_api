@@ -11,19 +11,19 @@ const loginUser      =async (req, res)=>{
                 if(findUser){
                     const passwordVerified = await bcrypt.compareSync(password, findUser.password)
                     if(passwordVerified){
-                        res.status(200)
+                        res.status(200).json({status:200})
                     }else{
-                        res.status(404)
+                        res.status(404).json({status: 404})
                     }
                 }else{
-                    res.status(404)
+                    res.status(404).json({status: 404})
                 }
                 
             }else{
-                res.status(404)
+                res.status(404).json({status: 404})
             }
     }catch(error){
-        res.status(400)
+        res.status(400).json({status: 400})
     }   
 }
 
@@ -36,13 +36,13 @@ const registerUser   =async(req, res)=>{
                 email:          email,
                 password:       password,
             })
-            res.status(200)
+            res.status(200).json({status: 200})
         }else{
-            res.status(400)
+            res.status(400).json({status: 400})
         }
         
     }catch(error){
-        res.status(400);
+        res.status(400).json({status: 400})
     }
    
 }
